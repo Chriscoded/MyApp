@@ -1,0 +1,24 @@
+<!-- <li  class="book"> -->
+    <!-- <p class="sno">{{ i + 1 }}</p> -->
+    <!-- <img [src]="book.image" [alt]="book.name" width="100"/>
+    <p class="title">{{ book.name | titlecase }} by {{book.author}}</p>
+    <p class="curency">{{ book.amount | currency : 'USD' }}</p>
+    <button *ngIf="!isInCart" (click)="addToCart()">Add to Cart</button>
+    <button *ngIf="isInCart" (click)="removeFromCart()">Remove from Cart</button> -->
+    
+<!-- </li> -->
+
+<li class="flex border rounded-xl h-60 m-2">
+    <img [src]="book.image" [alt]="book.name" width="100"
+        class="m-auto rounded-sm" />
+    <div class="m-auto p-4 font-medium" style="text-overflow: ellipsis;">
+        <p class="text-lg">{{ book.name | titlecase }} by {{ book.author |
+            titlecase}}</p>
+        <p class="my-4">{{ book.amount | currency:'USD' }}</p>
+        <button class="bg-yellow-400 rounded p-3" *ngIf="!isInCart"
+            (click)="addToCart()">Add to Cart</button>
+        <button class="bg-yellow-400 rounded p-3" *ngIf="isInCart"
+            (click)="removeFromCart()">Remove from
+            Cart</button>
+    </div>
+</li>

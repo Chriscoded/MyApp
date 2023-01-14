@@ -1,0 +1,63 @@
+
+<div class="flex m-auto h-screen justify-center">
+    <form (ngSubmit)="submit()"
+        #myForm="ngForm" 
+        class="p-4 rounded-lg border m-auto w-1/3">
+        <h1 class="text-center text-xl">Login</h1>
+        <div class="my-5 w-full">
+            <label for="email" style="margin-right: 27px;">Email</label>
+            <input type="email"  id="email" placeholder="Email Address" 
+                class="w-full m-2 p-2 rounded placeholder:italic placeholder:text-slate-400 border border-slate-500"
+                [(ngModel)]="form.email" name="email" #email="ngModel" required>
+        </div>
+        
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" 
+            class="p-4 bg-red-300 text-red-800 rounded">
+            Email field must be valid
+        </div>
+
+        <div class="my-5 w-full" style="margin-bottom:80px;">
+            <div class="inner-addon right-addon">
+                
+                <label for="password">Password</label>
+                <div class="">
+                    <input [type]="showPassword ? 'text' : 'password'" id="password" placeholder="Password" 
+                    class="w-full m-2 p-2 rounded placeholder:italic placeholder:text-slate-400 border border-slate-500"
+                    [(ngModel)]="form.password" name="password" #password="ngModel" required>
+
+                    <div style="margin-top: -50px;">
+                        <i alt="show" class="far fa-eye eye-show"
+                        (click)="showPassword = !showPassword"
+                        [class.hide]="showPassword"></i>
+                        <i alt="hide" class="far fa-eye-slash eye-hide"
+                        (click)="showPassword = !showPassword"
+                        [class.hide]="!showPassword"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <i class="fa-regular fa-eye-slash"></i> -->
+            <div class="relative" *ngIf="password.invalid && (password.dirty || password.touched)" 
+                class="p-4 bg-red-300 text-red-800 rounded" style="margin-top: 50px; margin-bottom: -50px;">
+                Password field must be valid
+            </div>
+        </div>
+
+        
+
+        
+        <div class="my-5 w-full">
+            <button type="submit" [disabled]="myForm.form.invalid"
+                class="p-2 w-full bg-purple-700 text-white hover:bg-purple-900 rounded cursor-pointer ">
+                <ng-container *ngIf="isLoading()">
+                    Loading...
+                </ng-container>
+                    
+                <ng-container *ngIf="!isLoading()">
+                    Submit
+                </ng-container>    
+            </button>
+            
+        </div>
+    </form>
+</div>
